@@ -1,0 +1,32 @@
+.home-container {
+  max-width: 100%;
+  background-image: url("../src/assets/images/pokemon.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 80px;
+}
+
+.play-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: poppins;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: #aaa;
+}
+.play-button:hover {
+  border-color: #646cff;
+}
+.play-button:focus,
+.play-button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
