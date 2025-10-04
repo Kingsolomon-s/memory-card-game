@@ -1,7 +1,7 @@
 .game-container {
   max-width: 350px;
   margin-inline: auto;
-  background-image: url("../src/assets/images/toy1.jpg");
+  background-image: url("/toy1.jpg");
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;

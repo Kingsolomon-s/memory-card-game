@@ -1,6 +1,6 @@
 .home-container {
   max-width: 100%;
-  background-image: url("../src/assets/images/pokemon.jpg");
+  background-image: url("/pokemon.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

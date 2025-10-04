@@ -1,6 +1,6 @@
 .level-container {
   max-width: 100%;
-  background-image: url("../src/assets/images/toy2.jpg");
+  background-image: url("/toy2.jpg");
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
