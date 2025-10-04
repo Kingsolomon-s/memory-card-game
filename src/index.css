@@ -12,6 +12,7 @@ body {
   place-items: center; */
   /* min-width: 320px; */
   min-height: 100vh;
+  background-color: #000;
 }
 #root {
   max-width: clamp(16rem, 100%, 60rem);
