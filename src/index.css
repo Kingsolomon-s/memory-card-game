@@ -14,7 +14,7 @@ body {
   min-height: 100vh;
 }
 #root {
-  max-width: clamp(16rem, 95%, 60rem);
+  max-width: clamp(16rem, 100%, 60rem);
   margin-inline: auto;
   min-height: 100vh;
 }
