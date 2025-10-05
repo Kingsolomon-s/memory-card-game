@@ -1,8 +1,11 @@
 import cover from "../assets/images/cover.jpg";
 
 function Card({ card, handleCardClick, isFlipping }) {
+  const handleClick = (cardId) => {
+    handleCardClick(cardId);
+  };
   return (
-    <div className="card-container" onClick={() => handleCardClick(card.id)}>
+    <div className="card-container" onClick={() => handleClick(card.id)}>
       <div className={`card-inner ${isFlipping ? "is-flipping" : ""}`}>
         <div className="card">
           <img src={card.imageUrl} alt={card.name} />

@@ -51,41 +51,48 @@ function useGameLogic() {
   };
 
   const handleCardClick = (clickedCardId) => {
+    if (isFlipping) return;
+
     const card = cards.find((c) => c.id === clickedCardId);
     const cardCount = cards.length;
 
     if (card && card.clicked) {
       alert("Game Over");
-      setIsFlipping(true);
+      requestAnimationFrame(() => {
+        setIsFlipping(true);
+      });
+      resetGame(cardCount, currentScore);
       setTimeout(() => {
-        resetGame(cardCount, currentScore);
         setIsFlipping(false);
-      }, 600);
+      }, 800);
       return;
     }
 
-    setIsFlipping(true);
+    setCurrentScore((prevScore) => {
+      const newScore = prevScore + 1;
+
+      if (newScore === cardCount) {
+        alert("Level Complete! Perfect Score!");
+        updateLevelBestScore(cardCount, newScore);
+      }
+      return newScore;
+    });
+
+    setCards((prevCards) => {
+      const updatedCards = prevCards.map((c) =>
+        c.id === clickedCardId ? { ...c, clicked: true } : c,
+      );
+      return shuffleArray(updatedCards);
+    });
+
+    requestAnimationFrame(() => {
+      setIsFlipping(true);
+    });
 
     setTimeout(() => {
       setIsFlipping(false);
+    }, 800);
 
-      setCurrentScore((prevScore) => {
-        const newScore = prevScore + 1;
-
-        if (newScore === cardCount) {
-          alert("Level Complete! Perfect Score!");
-          updateLevelBestScore(cardCount, newScore);
-        }
-        return newScore;
-      });
-
-      setCards((prevCards) => {
-        const updatedCards = prevCards.map((c) =>
-          c.id === clickedCardId ? { ...c, clicked: true } : c,
-        );
-        return shuffleArray(updatedCards);
-      });
-    }, 600);
     return isFlipping;
   };
 
