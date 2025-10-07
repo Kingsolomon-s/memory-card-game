@@ -16,6 +16,11 @@ function App() {
     startGame,
     handleCardClick,
     isFlipping,
+    modalState,
+    handleModalRestart,
+    handleModalBackToLevels,
+    handleModalNextLevel,
+    hasNextLevel,
   } = useGameLogic();
 
   console.log(allpokemonCache);
@@ -59,6 +64,11 @@ function App() {
         currentScore={currentScore}
         bestScore={currentBestScore}
         isFlipping={isFlipping}
+        modalState={modalState}
+        handleModalRestart={handleModalRestart}
+        handleModalBackToLevels={handleModalBackToLevels}
+        handleModalNextLevel={handleModalNextLevel}
+        hasNextLevel={hasNextLevel}
       />
     </div>
   );
