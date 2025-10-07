@@ -31,14 +31,6 @@ function initializeLevelCards(cache, count) {
   }));
 }
 
-const levelMap = {
-  level1: 5,
-  level2: 6,
-  level3: 8,
-  level4: 10,
-  level5: 12,
-};
-
 const levels = [
   { name: 1, goal: 4, bestScore: 0 },
   { name: 2, goal: 6, bestScore: 0 },
@@ -47,4 +39,4 @@ const levels = [
   { name: 5, goal: 12, bestScore: 0 },
 ];
 
-export { shuffleArray, initializeLevelCards, levelMap, levels };
+export { shuffleArray, initializeLevelCards, levels };
