@@ -1,5 +1,4 @@
 .game-container {
-  /* max-width: 350px; */
   margin-inline: auto;
   background-image: url("/toy1.jpg");
   background-position: bottom;
@@ -27,6 +26,9 @@
   border: 1px solid silver;
   padding: 10px;
   border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  margin-inline: auto;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 20px;
 }
@@ -120,4 +122,16 @@
 
 .cover {
   transform: rotateY(180deg);
+}
+
+@media screen and (min-width: 400px) {
+  .game {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .card-container {
+    height: 150px;
+  }
+  .cover > img {
+    height: 150px;
+  }
 }

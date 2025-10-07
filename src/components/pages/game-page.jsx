@@ -1,6 +1,7 @@
 import Card from "../card.jsx";
 import { icons } from "../../assets/icons/icons.js";
 import "../../styles/game-page.css";
+import Modal from "../modal.jsx";
 
 function Game({
   cards,
@@ -10,6 +11,11 @@ function Game({
   currentScore,
   bestScore,
   levelData,
+  modalState,
+  onModalRestart,
+  onModalBackToLevels,
+  onModalNextLevel,
+  hasNextLevel,
 }) {
   const level = levelData.find((l) => l.goal === cards.length);
   return (
@@ -37,6 +43,17 @@ function Game({
           );
         })}
       </div>
+
+      <Modal
+        isOpen={modalState.isOpen}
+        type={modalState.type}
+        currentScore={currentScore}
+        cardCount={cards.length}
+        onRestart={onModalRestart}
+        onBackToLevels={onModalBackToLevels}
+        onModalNextLevel={onModalNextLevel}
+        hasNextLevel={hasNextLevel}
+      />
     </div>
   );
 }
