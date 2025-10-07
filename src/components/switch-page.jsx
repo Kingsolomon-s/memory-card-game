@@ -13,6 +13,11 @@ function SwitchPage({
   startGame,
   handleCardClick,
   isFlipping,
+  modalState,
+  handleModalRestart,
+  handleModalBackToLevels,
+  handleModalNextLevel,
+  hasNextLevel,
 }) {
   let activePage;
   switch (page) {
@@ -34,6 +39,11 @@ function SwitchPage({
           currentScore={currentScore}
           bestScore={bestScore}
           levelData={levelData}
+          modalState={modalState}
+          onModalRestart={handleModalRestart}
+          onModalBackToLevels={handleModalBackToLevels}
+          onModalNextLevel={handleModalNextLevel}
+          hasNextLevel={hasNextLevel}
         />
       );
       break;
