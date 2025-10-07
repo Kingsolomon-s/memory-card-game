@@ -12,14 +12,10 @@ function Level({ setPage, startGame, cachedData }) {
         <button className="back" onClick={() => setPage("home")}>
           <img src={icons.backIcon} alt="back icon" />
         </button>
+        <h1>Levels</h1>
       </div>
-      <div className="level-bottom">
-        {/*<button className="level">1</button>
-        <button className="level">2</button>
-        <button className="level">3</button>
-        <button className="level">4</button>
-        <button className="level">5</button>*/}
 
+      <div className="level-bottom">
         {levels.map((level) => {
           const goal = level.goal;
           return (
