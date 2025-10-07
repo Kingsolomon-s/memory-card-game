@@ -24,6 +24,7 @@ function useGameLogic() {
   const [currentScore, setCurrentScore] = useState(0);
   const [levelData, setLevelData] = useState(loadlevelData);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [modalState, setModalState] = useState({ isOpen: false, type: null });
 
   const updateLevelBestScore = (cardCount, newScore) => {
     setLevelData((prevData) => {
@@ -57,13 +58,14 @@ function useGameLogic() {
     const cardCount = cards.length;
 
     if (card && card.clicked) {
-      alert("Game Over");
       requestAnimationFrame(() => {
         setIsFlipping(true);
       });
-      resetGame(cardCount, currentScore);
+
       setTimeout(() => {
         setIsFlipping(false);
+        setModalState({ isOpen: true, type: "lose" });
+        updateLevelBestScore(cardCount, currentScore);
       }, 800);
       return;
     }
@@ -72,10 +74,14 @@ function useGameLogic() {
       const newScore = prevScore + 1;
 
       if (newScore === cardCount) {
-        alert("Level Complete! Perfect Score!");
+        setModalState({ isOpen: true, type: "win" });
         updateLevelBestScore(cardCount, newScore);
       }
       return newScore;
+    });
+
+    requestAnimationFrame(() => {
+      setIsFlipping(true);
     });
 
     setCards((prevCards) => {
@@ -83,10 +89,6 @@ function useGameLogic() {
         c.id === clickedCardId ? { ...c, clicked: true } : c,
       );
       return shuffleArray(updatedCards);
-    });
-
-    requestAnimationFrame(() => {
-      setIsFlipping(true);
     });
 
     setTimeout(() => {
@@ -105,11 +107,39 @@ function useGameLogic() {
     });
   };
 
+  const handleModalRestart = () => {
+    resetGame(cards.length, currentScore);
+    setModalState({ isOpen: false, type: null });
+  };
+
+  const handleModalBackToLevels = () => {
+    setModalState({ isOpen: false, type: null });
+    setPage("level");
+  };
+
+  const handleModalNextLevel = () => {
+    const currentLevelIndex = levelData.findIndex(
+      (l) => l.goal === cards.length,
+    );
+    const nextLevel = levelData[currentLevelIndex + 1];
+
+    if (nextLevel) {
+      setModalState({ isOpen: false, type: null });
+      startGame(nextLevel.goal);
+    }
+  };
+
+  const hasNextLevel = () => {
+    const currentLevelIndex = levelData.findIndex(
+      (l) => l.goal === cards.length,
+    );
+    return currentLevelIndex < levelData.length - 1;
+  };
+
   const currentBestScore =
     levelData.find((l) => l.goal === cards.length)?.bestScore || 0;
 
   return {
-    //states
     page,
     setPage,
     allpokemonCache,
@@ -121,6 +151,11 @@ function useGameLogic() {
     startGame,
     handleCardClick,
     isFlipping,
+    modalState,
+    handleModalRestart,
+    handleModalBackToLevels,
+    handleModalNextLevel,
+    hasNextLevel,
   };
 }
 
